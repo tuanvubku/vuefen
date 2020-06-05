@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <script>let $ = require('jquery');</script>
+    <script>require('popper.js');</script>
+    <script>require('bootstrap');</script>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="loading">
+        <img src="images/loading.gif">
+    </div>
+    <div class="container-fluid" id="wrapper">
+        <div class="row">
+    
+            <!-- Sidebar -->
+            <div class="col-3" id="algorithms">
+                <!-- Search form -->
+                <!-- <div class="active-pink-3 active-pink-4 mb-4">
+                    <input type="text" placeholder="Search" aria-label="Search" id="search-bar">
+                 </div> -->
+                <img id="logo" src="images/favicon.ico">
+                <div id="algorithm-header">VueFen</div>
+
+                <div class="nav flex-column nav-pills" id="algorithm-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="rsa-tab" data-toggle="pill" href="#rsa" role="tab"
+                        aria-controls="rsa" aria-selected="true">
+                        RSA
+                    </a>
+                    <a class="nav-link" id="rc4-tab" data-toggle="pill" href="#rc4" role="tab" aria-controls="rc4"
+                        aria-selected="false">
+                        RC4
+                    </a>
+                    <a class="nav-link" id="aes-tab" data-toggle="pill" href="#aes" role="tab" aria-controls="aes"
+                        aria-selected="false">
+                        AES-256-CBC
+                    </a>
+                </div>
+            </div>
+
+            <div class="col" id="content">
+                <div class="tab-content">
+
+                    <!-- RSA -->
+                    <div class="tab-pane fade show active" id="rsa" role="tabpanel" aria-labelledby="rsa-tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="rsa-genkey-tab" data-toggle="tab" href="#rsa-genkey"
+                                    role="tab" aria-controls="home" aria-selected="true">Generate key pair</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="rsa-encryption-tab" data-toggle="tab" href="#rsa-encryption"
+                                    role="tab" aria-controls="profile" aria-selected="false">Encryption</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="rsa-decryption-tab" data-toggle="tab" href="#rsa-decryption"
+                                    role="tab" aria-controls="profile" aria-selected="false">Decryption</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show" id="rsa-encryption" role="tabpanel"
+                                aria-labelledby="rsa-encryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to encrypt</label>
+                                        <textarea class="form-control" id="rsa-encrypt-message" rows="5"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-rsa-en">Load message from
+                                            file</button>
+                                        <!-- <input type="file" id="file" class="form-control-file" value="Load from file"> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Public key</label>
+                                        <textarea class="form-control" id="rsa-encrypt-key" rows="3"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open">Load key from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Encrypted message</label>
+                                        <textarea class="form-control" id="result" rows="5"></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-rsa-en">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Encrypt</button>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade" id="rsa-decryption" role="tabpanel"
+                                aria-labelledby="rsa-decryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to decrypt</label>
+                                        <textarea class="form-control" id="message" rows="5"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-rsa-de">Load message from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Private key</label>
+                                        <textarea class="form-control" id="key" rows="3"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open">Load key from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Decrypted message</label>
+                                        <textarea class="form-control" id="result" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-rsa-de">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Decrypt</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade active show" id="rsa-genkey" role="tabpanel"
+                                aria-labelledby="rsa-genkey-tab">
+                                <form>
+                                    <button type="button" class="btn btn-danger get-result">Generate</button>
+                                    <div class="form-group">
+                                        <label for="public-key">Public key</label>
+                                        <textarea class="form-control" id="rsa-public-key" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="key-rsa-pub">Save key to
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="private-key">Private key</label>
+                                        <textarea class="form-control" id="rsa-private-key" rows="4"
+                                            disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="key-rsa-pri">Save key to
+                                            file</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RC4 -->
+                    <div class="tab-pane fade" id="rc4" role="tabpanel" aria-labelledby="rc4-tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="rc4-encryption-tab" data-toggle="tab"
+                                    href="#rc4-encryption" role="tab" aria-controls="home"
+                                    aria-selected="true">Encryption</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="rc4-decryption-tab" data-toggle="tab" href="#rc4-decryption"
+                                    role="tab" aria-controls="profile" aria-selected="false">Decryption</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="rc4-encryption" role="tabpanel"
+                                aria-labelledby="rc4-encryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to encrypt</label>
+                                        <textarea class="form-control" id="message" rows="4"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-rc4-en">Load message from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Key to encrypt</label>
+                                        <textarea class="form-control" id="key" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Encrypted message</label>
+                                        <textarea class="form-control" id="result" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-rc4-en">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Encrypt</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="rc4-decryption" role="tabpanel"
+                                aria-labelledby="rc4-decryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to decrypt</label>
+                                        <textarea class="form-control" id="message" rows="4"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-rc4-de">Load message from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Key to decrypt</label>
+                                        <textarea class="form-control" id="key" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Decrypted message</label>
+                                        <textarea class="form-control" id="result" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-rc4-de">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Decrypt</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AES-->
+                    <div class="tab-pane fade" id="aes" role="tabpanel" aria-labelledby="aes-tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="aes-encryption-tab" data-toggle="tab"
+                                    href="#aes-encryption" role="tab" aria-controls="home"
+                                    aria-selected="true">Encryption</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="aes-decryption-tab" data-toggle="tab" href="#aes-decryption"
+                                    role="tab" aria-controls="profile" aria-selected="false">Decryption</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="aes-encryption" role="tabpanel"
+                                aria-labelledby="aes-encryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to encrypt</label>
+                                        <textarea class="form-control" id="message" rows="4"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-aes-en">Load message from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Key to encrypt</label>
+                                        <textarea class="form-control" id="key" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Encrypted message</label>
+                                        <textarea class="form-control" id="result" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-aes-en">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Encrypt</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="aes-decryption" role="tabpanel"
+                                aria-labelledby="aes-decryption-tab">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message">Message to decrypt</label>
+                                        <textarea class="form-control" id="message" rows="4"></textarea>
+                                        <button type="button" class="btn btn-danger file-button open" id="open-aes-de">Load message from
+                                            file</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Key to decrypt</label>
+                                        <textarea class="form-control" id="key" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result">Decrypted message</label>
+                                        <textarea class="form-control" id="result" rows="4" disabled></textarea>
+                                        <button type="button" class="btn btn-danger file-button save" id="save-aes-de">Save message to
+                                            file</button>
+                                    </div>
+                                    <button type="button" class="btn btn-danger get-result">Decrypt</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>require("./renderer.js");</script>
+</body>
+
+</html>

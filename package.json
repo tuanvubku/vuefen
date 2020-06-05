@@ -1,0 +1,33 @@
+{
+  "name": "VueFen",
+  "version": "1.0.0",
+  "description": "Cryptool assignment",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "vudt",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^9.0.0",
+    "electron-builder": "^20.39.0"
+  },
+  "build": {
+    "appId": "com.huyefen",
+    "linux": {
+      "target": "AppImage"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "dependencies": {
+    "arc4": "^3.4.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "node-rsa": "^1.0.5",
+    "popper.js": "^1.14.7"
+  }
+}
