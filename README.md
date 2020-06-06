@@ -1,9 +1,15 @@
 # vuefen
 A project for Cryptography and Network Security course
 
-#Installation file is located at release folder.
+### Install exe file:
+ ```
+ Download exe file at **release folder
+ ```
 
 
-#To install project, run:
-  npm install
-  npm start
+### Running
+
+```
+npm install
+npm start
+```
