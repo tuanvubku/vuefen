@@ -15,7 +15,7 @@
     "electron-builder": "^20.39.0"
   },
   "build": {
-    "appId": "com.huyefen",
+    "appId": "com.vuefen",
     "linux": {
       "target": "AppImage"
     },
